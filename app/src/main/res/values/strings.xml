@@ -9,9 +9,8 @@
 
     <string name="delete">DELETE</string>
 
-    <string name="dialog_message_delete_location">Are you sure you want to remove this place?</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
+    <string name="search_hint">Type name…</string>
 
-
+    <!--Menu item titles-->
+    <string name="action_search">Search</string>
 </resources>

@@ -1,18 +1,21 @@
 package rs.gecko.petar.owmapp.fragments;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
+import android.app.SearchManager;
+import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -36,6 +39,8 @@ public class SavedLocationsFragment extends Fragment implements RecyclerItemTouc
     private SavedLocationsAdapter adapter;
 
     RecyclerView locationsRecyclerView;
+
+    private SearchView searchView;
 
     public SavedLocationsFragment() {
         // Required empty public constructor
@@ -95,7 +100,7 @@ public class SavedLocationsFragment extends Fragment implements RecyclerItemTouc
         // attaching the touch helper to recycler view
         new ItemTouchHelper(itemTouchHelperCallback1).attachToRecyclerView(locationsRecyclerView);
 
-        setSearchListener();
+        setHasOptionsMenu(true);
 
         return v;
     }
@@ -127,10 +132,6 @@ public class SavedLocationsFragment extends Fragment implements RecyclerItemTouc
         locationsRecyclerView.invalidate();
     }
 
-    private void setSearchListener() {
-
-    }
-
     /**
      * callback when recycler view is swiped
      * item will be removed on swiped
@@ -140,45 +141,78 @@ public class SavedLocationsFragment extends Fragment implements RecyclerItemTouc
     public void onSwiped(final RecyclerView.ViewHolder viewHolder, final int direction, final int position) {
         if (viewHolder instanceof SavedLocationsAdapter.SavedLocationsViewHolder) {
 
-            AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
-            alertDialog.setMessage(getString(R.string.dialog_message_delete_location));
+            // get the removed item name to display it in snack bar
+            String name = myLocations.get(viewHolder.getAdapterPosition()).getLocationName();
 
-            alertDialog.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-                    // get the removed item name to display it in snack bar
-                    String name = myLocations.get(viewHolder.getAdapterPosition()).getLocationName();
+            // backup of removed item for undo purpose
+            final MyLocation deletedItem = myLocations.get(viewHolder.getAdapterPosition());
+            final int deletedIndex = viewHolder.getAdapterPosition();
 
-                    // backup of removed item for undo purpose
-                    final MyLocation deletedItem = myLocations.get(viewHolder.getAdapterPosition());
-                    final int deletedIndex = viewHolder.getAdapterPosition();
+            // remove the item from recycler view
+            adapter.removeItem(viewHolder.getAdapterPosition());
 
-                    // remove the item from recycler view
-                    adapter.removeItem(viewHolder.getAdapterPosition());
+            // showing snack bar with Undo option
+            Snackbar snackbar = Snackbar
+                    .make(getActivity().findViewById(R.id.coordinator_layout), name + " removed from bookmarked locations!", Snackbar.LENGTH_LONG);
+            snackbar.setAction("UNDO", new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
-                    // showing snack bar with Undo option
-                    Snackbar snackbar = Snackbar
-                            .make(getActivity().findViewById(R.id.coordinator_layout), name + " removed from bookmarked locations!", Snackbar.LENGTH_LONG);
-                    snackbar.setAction("UNDO", new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-
-                            // undo is selected, restore the deleted item
-                            adapter.restoreItem(deletedItem, deletedIndex);
-                        }
-                    });
-                    snackbar.setActionTextColor(Color.YELLOW);
-                    snackbar.show();
+                    // undo is selected, restore the deleted item
+                    adapter.restoreItem(deletedItem, deletedIndex);
                 }
             });
-
-            alertDialog.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.cancel();
-                    adapter.notifyDataSetChanged();
-                }
-            });
-
-            Dialog d = alertDialog.show();
+            snackbar.setActionTextColor(Color.YELLOW);
+            snackbar.show();
         }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.main, menu);
+
+        // Associate searchable configuration with the SearchView
+        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+        searchView = (SearchView) menu.findItem(R.id.action_search)
+                .getActionView();
+        searchView.setSearchableInfo(searchManager
+                .getSearchableInfo(getActivity().getComponentName()));
+        searchView.setMaxWidth(Integer.MAX_VALUE);
+
+        // listening to search query text change
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // filter recycler view when query submitted
+                adapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String query) {
+                // filter recycler view when text is changed
+                adapter.getFilter().filter(query);
+                return false;
+            }
+        });
+
+
+
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_search) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
