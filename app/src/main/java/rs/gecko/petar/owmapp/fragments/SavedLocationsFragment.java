@@ -2,6 +2,8 @@ package rs.gecko.petar.owmapp.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +11,7 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import rs.gecko.petar.owmapp.R;
+import rs.gecko.petar.owmapp.adapters.SavedLocationsAdapter;
 import rs.gecko.petar.owmapp.data.LocalCache;
 import rs.gecko.petar.owmapp.models.MyLocation;
 
@@ -21,6 +24,9 @@ public class SavedLocationsFragment extends Fragment {
     private static final String TAG = "SavedLocFragment";
 
     private List<MyLocation> myLocations;
+    private SavedLocationsAdapter adapter;
+
+    RecyclerView locationsRecyclerView;
 
     public SavedLocationsFragment() {
         // Required empty public constructor
@@ -49,7 +55,13 @@ public class SavedLocationsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_savedlocations, container, false);
+        View v = inflater.inflate(R.layout.fragment_savedlocations, container, false);
+        locationsRecyclerView = (RecyclerView) v.findViewById(R.id.saved_locations_rv);
+
+
+        setSearchListener();
+
+        return v;
     }
 
     @Override
@@ -66,6 +78,19 @@ public class SavedLocationsFragment extends Fragment {
         
         if (myLocations != null) {
             // show recyclerView with locations
+            refreshRecyclerView();
         }
     }
+
+    public void refreshRecyclerView() {
+        adapter = new SavedLocationsAdapter(myLocations, getActivity());
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        locationsRecyclerView.setLayoutManager(mLayoutManager);
+        locationsRecyclerView.setAdapter(adapter);
+    }
+
+    private void setSearchListener() {
+
+    }
+
 }

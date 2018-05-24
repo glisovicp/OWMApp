@@ -103,7 +103,8 @@ public class MainActivity extends AppCompatActivity
 
         Log.d(TAG, "onCreate: Mocked list size = "+ list.size());
 
-        LocalCache.getInstance(getApplication()).addMyLocations(list);
+        LocalCache.getInstance(getApplication()).setMyLocations(list);
+
     }
 
     @Override

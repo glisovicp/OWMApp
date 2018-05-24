@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import rs.gecko.petar.owmapp.models.MyLocation;
@@ -54,21 +53,25 @@ public class LocalCache {
         return myLocations;
     }
 
-    public void addMyLocations(List<MyLocation> myLocations) {
-        if (getMyLocations() == null) {
-            this.myLocations = new ArrayList<>();
+//    public void addMyLocations(List<MyLocation> myLocations) {
+//        if (getMyLocations() == null) {
+//            this.myLocations = new ArrayList<>();
+//
+//        }
+//        this.myLocations.addAll(myLocations);
+//        cachingManager.save(KEY_MYLOCATIONS, this.myLocations);
+//    }
+//
+//    public void removeMyLocations(List<MyLocation> myLocations) {
+//        if (getMyLocations() != null) {
+//            this.myLocations.removeAll(myLocations);
+//            cachingManager.save(KEY_MYLOCATIONS, this.myLocations);
+//        }
+//    }
 
-        }
-        this.myLocations.addAll(myLocations);
+    public void setMyLocations(List<MyLocation> myLocations) {
+
+        this.myLocations = myLocations;
         cachingManager.save(KEY_MYLOCATIONS, this.myLocations);
     }
-
-    public void removeMyLocations(List<MyLocation> myLocations) {
-        if (getMyLocations() != null) {
-            this.myLocations.removeAll(myLocations);
-            cachingManager.save(KEY_MYLOCATIONS, this.myLocations);
-        }
-    }
-
-
 }
