@@ -15,6 +15,10 @@ buildscript {
     }
 }
 
+ext{
+    supportLibVersion = '26.1.0'
+}
+
 allprojects {
     repositories {
         google()

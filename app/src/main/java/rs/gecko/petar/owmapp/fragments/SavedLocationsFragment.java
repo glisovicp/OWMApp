@@ -6,13 +6,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.List;
+
 import rs.gecko.petar.owmapp.R;
+import rs.gecko.petar.owmapp.data.LocalCache;
+import rs.gecko.petar.owmapp.models.MyLocation;
 
 /**
  * Created by Petar on 5/23/18.
  */
 
 public class SavedLocationsFragment extends Fragment {
+
+    private static final String TAG = "SavedLocFragment";
+
+    private List<MyLocation> myLocations;
 
     public SavedLocationsFragment() {
         // Required empty public constructor
@@ -24,7 +32,7 @@ public class SavedLocationsFragment extends Fragment {
      *
      * @return A new instance of fragment SavedLocationsFragment.
      */
-    public static SavedLocationsFragment newInstance() {
+    public static SavedLocationsFragment newInstance(LocalCache localCache) {
         SavedLocationsFragment fragment = new SavedLocationsFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
@@ -42,5 +50,22 @@ public class SavedLocationsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_savedlocations, container, false);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // get my saved locations
+        myLocations = LocalCache.getInstance(getActivity().getApplication()).getMyLocations();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        
+        if (myLocations != null) {
+            // show recyclerView with locations
+        }
     }
 }
