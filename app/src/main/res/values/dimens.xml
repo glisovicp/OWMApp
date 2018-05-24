@@ -5,7 +5,11 @@
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <!-- Bookmarked list item row -->
     <dimen name="mylocation_listitem_horizontal_margin">10dp</dimen>
     <dimen name="mylocation_listitem_vertical_margin">15dp</dimen>
+    <dimen name="padd_10">10dp</dimen>
+    <dimen name="ic_delete">30dp</dimen>
 
 </resources>

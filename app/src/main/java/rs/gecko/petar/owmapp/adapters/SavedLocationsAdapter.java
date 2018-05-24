@@ -8,12 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import rs.gecko.petar.owmapp.R;
+import rs.gecko.petar.owmapp.activities.MainActivity;
+import rs.gecko.petar.owmapp.data.LocalCache;
 import rs.gecko.petar.owmapp.models.MyLocation;
 
 /**
@@ -22,7 +25,8 @@ import rs.gecko.petar.owmapp.models.MyLocation;
 
 public class SavedLocationsAdapter extends RecyclerView.Adapter<SavedLocationsAdapter.SavedLocationsViewHolder> implements Filterable {
 
-    private static final String TAG = "SaveLocAdapter";
+    private static final String TAG = SavedLocationsAdapter.class.getSimpleName();
+
     private List<MyLocation> savedLocations;
     private List<MyLocation> filteredSavedLocations;
     public Context context;
@@ -81,15 +85,47 @@ public class SavedLocationsAdapter extends RecyclerView.Adapter<SavedLocationsAd
 
     }
 
-    class SavedLocationsViewHolder extends RecyclerView.ViewHolder {
+    public void removeItem(int position) {
+        savedLocations.remove(position);
+
+        // save changes in local cache
+        if (context instanceof MainActivity) {
+            MainActivity main = (MainActivity) context;
+            LocalCache.getInstance(main.getApplication()).setMyLocations(savedLocations);
+        }
+
+        // notify the item removed by position
+        // to perform recycler view delete animations
+        // NOTE: don't call notifyDataSetChanged()
+        notifyItemRemoved(position);
+    }
+
+    public void restoreItem(MyLocation location, int position) {
+        savedLocations.add(position, location);
+
+        // save changes in local cache
+        if (context instanceof MainActivity) {
+            MainActivity main = (MainActivity) context;
+            LocalCache.getInstance(main.getApplication()).setMyLocations(savedLocations);
+        }
+
+        // notify item added by position
+        notifyItemInserted(position);
+    }
+
+    public class SavedLocationsViewHolder extends RecyclerView.ViewHolder {
         public final View view;
         final TextView title;
+        public RelativeLayout viewBackground, viewForeground;
+
         MyLocation item;
 
         SavedLocationsViewHolder(View view) {
             super(view);
             this.view = view;
             title = (TextView) view.findViewById(R.id.title);
+            viewBackground = (RelativeLayout) view.findViewById(R.id.view_background);
+            viewForeground = (RelativeLayout) view.findViewById(R.id.view_foreground);
         }
 
     }

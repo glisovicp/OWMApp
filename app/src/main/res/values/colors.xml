@@ -9,4 +9,6 @@
     <color name="green">#4DB6AC</color>
 
     <color name="darkGrey">#424242</color>
+
+    <color name="bg_row_background">#fa315b</color>
 </resources>

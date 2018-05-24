@@ -6,4 +6,12 @@
 
     <string name="action_settings">Settings</string>
     <string name="demo_application">Demo application</string>
+
+    <string name="delete">DELETE</string>
+
+    <string name="dialog_message_delete_location">Are you sure you want to remove this place?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+
 </resources>
