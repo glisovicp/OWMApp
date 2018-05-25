@@ -13,6 +13,8 @@
 
     <!--Menu item titles-->
     <string name="action_search">Search</string>
+    <string name="action_save_location">Save</string>
+
 
     <!--Settings sccreen-->
     <string name="pref_measurement_title">Measurement</string>
@@ -21,5 +23,10 @@
 
     <string name="pref_local_storage_title">Bookmarked locations</string>
     <string name="pref_local_storage_subtitle">Clear bookmarked locations</string>
+
+
+    <!--Map sccreen-->
+    <string name="location_name">Location name</string>
+    <string name="no_permision_packager_message">There is no System Activity to handle the permissions request! Try to add manualy.</string>
 
 </resources>
