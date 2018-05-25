@@ -1,4 +1,4 @@
-package rs.gecko.petar.owmapp;
+package rs.gecko.petar.owmapp.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

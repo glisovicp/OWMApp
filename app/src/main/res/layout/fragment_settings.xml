@@ -108,21 +108,6 @@
                         android:gravity="start"
                         android:text="@string/pref_local_storage_title" />
 
-                    <!--<TextView-->
-                        <!--android:id="@+id/settings_localstorage_subtitle"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="wrap_content"-->
-                        <!--android:layout_below="@id/settings_localstorage_title"-->
-                        <!--android:layout_marginStart="@dimen/settings_horizontal_margin"-->
-                        <!--android:layout_marginLeft="@dimen/settings_horizontal_margin"-->
-                        <!--android:layout_marginTop="@dimen/settings_title_subtitle_margin"-->
-                        <!--android:layout_marginBottom="@dimen/settings_vertical_margin"-->
-                        <!--android:textColor="@color/darkGrey"-->
-                        <!--android:textSize="16sp"-->
-                        <!--android:textAlignment="textStart"-->
-                        <!--android:gravity="start"-->
-                        <!--android:text="@string/pref_local_storage_subtitle"/>-->
-
                     <Button
                         android:id="@+id/settings_localstorage_clear_btn"
                         android:layout_width="wrap_content"

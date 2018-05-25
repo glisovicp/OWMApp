@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rs.gecko.petar.owmapp.R;
-import rs.gecko.petar.owmapp.Utils;
 import rs.gecko.petar.owmapp.fragments.AddLocationFragment;
 import rs.gecko.petar.owmapp.fragments.HelpFragment;
 import rs.gecko.petar.owmapp.fragments.SavedLocationsFragment;
@@ -65,15 +64,6 @@ public class MainActivity extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.maincontainer, fragment).commit();
 
         }
-
-        if (Utils.isOnline(this)) {
-            Snackbar.make(parentLayout, "There is internet connection", Snackbar.LENGTH_LONG)
-                    .show();
-        } else {
-            Snackbar.make(parentLayout, "There is no internet connection", Snackbar.LENGTH_LONG)
-                    .show();
-        }
-
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

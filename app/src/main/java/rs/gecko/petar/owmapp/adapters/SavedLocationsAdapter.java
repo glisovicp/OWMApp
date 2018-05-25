@@ -1,6 +1,7 @@
 package rs.gecko.petar.owmapp.adapters;
 
 import android.content.Context;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import java.util.List;
 import rs.gecko.petar.owmapp.R;
 import rs.gecko.petar.owmapp.activities.MainActivity;
 import rs.gecko.petar.owmapp.data.LocalCache;
+import rs.gecko.petar.owmapp.fragments.WeatherDetailsFragment;
 import rs.gecko.petar.owmapp.models.MyLocation;
 
 /**
@@ -79,6 +81,16 @@ public class SavedLocationsAdapter extends RecyclerView.Adapter<SavedLocationsAd
             @Override
             public void onClick(View view) {
                 Log.d(TAG, "Place: " + holder.item.getLocationName());
+
+                if (context instanceof MainActivity) {
+                    MainActivity main = (MainActivity) context;
+                    main.showFab(false);
+
+                    WeatherDetailsFragment fragment = WeatherDetailsFragment.newInstance(holder.item);
+
+                    FragmentManager fragmentManager = main.getSupportFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.maincontainer, fragment).commit();
+                }
             }
         });
 

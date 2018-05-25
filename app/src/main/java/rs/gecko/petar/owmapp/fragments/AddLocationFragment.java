@@ -260,8 +260,8 @@ public class AddLocationFragment extends Fragment implements OnMapReadyCallback 
         myLocation.setLocationName(name);
 
         Coord coord = new Coord();
-        coord.setLat(lat);
-        coord.setLon(lng);
+        coord.lat = lat;
+        coord.lon = lng;
         myLocation.setLocation(coord);
 
         bookmarkedLocations = LocalCache.getInstance(getActivity().getApplication()).getMyLocations();

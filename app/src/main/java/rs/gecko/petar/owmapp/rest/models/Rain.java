@@ -13,13 +13,5 @@ import java.io.Serializable;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Rain extends BaseModel implements Serializable {
 
-    private double rainVolume;
-
-    public double getRainVolume() {
-        return rainVolume;
-    }
-
-    public void setRainVolume(double rainVolume) {
-        this.rainVolume = rainVolume;
-    }
+    public double rainVolume;
 }

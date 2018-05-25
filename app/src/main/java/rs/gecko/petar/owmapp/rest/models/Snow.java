@@ -13,13 +13,6 @@ import java.io.Serializable;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Snow extends BaseModel  implements Serializable  {
 
-    private double snowVolume;
+    public double snowVolume;
 
-    public double getSnowVolume() {
-        return snowVolume;
-    }
-
-    public void setSnowVolume(double snowVolume) {
-        this.snowVolume = snowVolume;
-    }
 }

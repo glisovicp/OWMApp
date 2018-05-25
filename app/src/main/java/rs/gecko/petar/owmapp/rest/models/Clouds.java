@@ -13,13 +13,5 @@ import java.io.Serializable;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Clouds extends BaseModel implements Serializable{
 
-    private long all;
-
-    public long getAll() {
-        return all;
-    }
-
-    public void setAll(long all) {
-        this.all = all;
-    }
+    public long all;
 }
