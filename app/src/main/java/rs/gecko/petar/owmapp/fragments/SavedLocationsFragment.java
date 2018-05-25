@@ -52,7 +52,7 @@ public class SavedLocationsFragment extends Fragment implements RecyclerItemTouc
      *
      * @return A new instance of fragment SavedLocationsFragment.
      */
-    public static SavedLocationsFragment newInstance(LocalCache localCache) {
+    public static SavedLocationsFragment newInstance() {
         SavedLocationsFragment fragment = new SavedLocationsFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);

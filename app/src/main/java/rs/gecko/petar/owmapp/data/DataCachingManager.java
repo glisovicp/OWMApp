@@ -58,7 +58,7 @@ public class DataCachingManager {
         }
     }
 
-    public void clearCache() {
-        preferences.edit().clear().apply();
+    public void clearKeyValuePair(String key) {
+        preferences.edit().remove(key).commit();
     }
 }

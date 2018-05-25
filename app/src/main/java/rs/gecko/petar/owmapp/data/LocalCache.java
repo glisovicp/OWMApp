@@ -74,4 +74,11 @@ public class LocalCache {
         this.myLocations = myLocations;
         cachingManager.save(KEY_MYLOCATIONS, this.myLocations);
     }
+
+    public void clearCache() {
+
+        //clear all saved locations
+        myLocations = null;
+        cachingManager.clearKeyValuePair(KEY_MYLOCATIONS);
+    }
 }

@@ -13,4 +13,13 @@
 
     <!--Menu item titles-->
     <string name="action_search">Search</string>
+
+    <!--Settings sccreen-->
+    <string name="pref_measurement_title">Measurement</string>
+    <string name="pref_measurement_subtitle">Choose measure unit</string>
+    <string name="pref_measurement_default_value">metric</string>
+
+    <string name="pref_local_storage_title">Bookmarked locations</string>
+    <string name="pref_local_storage_subtitle">Clear bookmarked locations</string>
+
 </resources>

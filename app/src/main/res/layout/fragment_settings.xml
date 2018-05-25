@@ -4,11 +4,142 @@
     android:layout_height="match_parent"
     tools:context="rs.gecko.petar.owmapp.fragments.SettingsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Settings"
-        android:textColor="@color/blue"/>
+        android:layout_height="match_parent">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!--<RelativeLayout-->
+                    <!--android:id="@+id/settings_measurement_view"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content">-->
+
+                    <!--<View-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="1dp"-->
+                        <!--android:layout_alignParentBottom="true"-->
+                        <!--android:background="@color/darkGrey"/>-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/settings_measurement_title"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_alignParentStart="true"-->
+                        <!--android:layout_alignParentLeft="true"-->
+                        <!--android:layout_marginTop="@dimen/settings_vertical_margin"-->
+                        <!--android:layout_marginStart="@dimen/settings_horizontal_margin"-->
+                        <!--android:layout_marginEnd="@dimen/settings_horizontal_margin"-->
+                        <!--android:textColor="@color/green"-->
+                        <!--android:textSize="14sp"-->
+                        <!--android:gravity="start"-->
+                        <!--android:textAlignment="textStart"-->
+                        <!--android:text="@string/pref_measurement_title" />-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/settings_measurement_subtitle"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_below="@id/settings_measurement_title"-->
+                        <!--android:layout_marginStart="@dimen/settings_horizontal_margin"-->
+                        <!--android:layout_marginLeft="@dimen/settings_horizontal_margin"-->
+                        <!--android:layout_marginTop="@dimen/settings_title_subtitle_margin"-->
+                        <!--android:layout_marginBottom="@dimen/settings_vertical_margin"-->
+                        <!--android:textColor="@color/darkGrey"-->
+                        <!--android:textSize="16sp"-->
+                        <!--android:gravity="start"-->
+                        <!--android:textAlignment="textStart"-->
+                        <!--android:text="@string/pref_measurement_subtitle"/>-->
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/settings_measurement_value"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_alignBaseline="@+id/settings_measurement_subtitle"-->
+                        <!--android:layout_alignBottom="@+id/settings_measurement_subtitle"-->
+                        <!--android:layout_toEndOf="@+id/settings_measurement_subtitle"-->
+                        <!--android:layout_toRightOf="@+id/settings_measurement_subtitle"-->
+                        <!--android:layout_alignParentEnd="true"-->
+                        <!--android:layout_alignParentRight="true"-->
+                        <!--android:layout_marginEnd="@dimen/settings_horizontal_margin"-->
+                        <!--android:layout_marginStart="@dimen/settings_horizontal_margin"-->
+                        <!--android:textColor="@color/darkGrey"-->
+                        <!--android:textSize="16sp"-->
+                        <!--android:gravity="end"-->
+                        <!--android:textAlignment="textEnd"-->
+                        <!--android:text="@string/pref_measurement_default_value"/>-->
+
+                <!--</RelativeLayout>-->
+
+                <RelativeLayout
+                    android:id="@+id/settings_localstorage_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@color/darkGrey"/>
+
+                    <TextView
+                        android:id="@+id/settings_localstorage_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginTop="@dimen/settings_vertical_margin"
+                        android:layout_marginStart="@dimen/settings_horizontal_margin"
+                        android:layout_marginEnd="@dimen/settings_horizontal_margin"
+                        android:textColor="@color/green"
+                        android:textSize="14sp"
+                        android:textAlignment="textStart"
+                        android:gravity="start"
+                        android:text="@string/pref_local_storage_title" />
+
+                    <!--<TextView-->
+                        <!--android:id="@+id/settings_localstorage_subtitle"-->
+                        <!--android:layout_width="wrap_content"-->
+                        <!--android:layout_height="wrap_content"-->
+                        <!--android:layout_below="@id/settings_localstorage_title"-->
+                        <!--android:layout_marginStart="@dimen/settings_horizontal_margin"-->
+                        <!--android:layout_marginLeft="@dimen/settings_horizontal_margin"-->
+                        <!--android:layout_marginTop="@dimen/settings_title_subtitle_margin"-->
+                        <!--android:layout_marginBottom="@dimen/settings_vertical_margin"-->
+                        <!--android:textColor="@color/darkGrey"-->
+                        <!--android:textSize="16sp"-->
+                        <!--android:textAlignment="textStart"-->
+                        <!--android:gravity="start"-->
+                        <!--android:text="@string/pref_local_storage_subtitle"/>-->
+
+                    <Button
+                        android:id="@+id/settings_localstorage_clear_btn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/settings_localstorage_title"
+                        android:layout_marginStart="@dimen/settings_horizontal_margin"
+                        android:layout_marginLeft="@dimen/settings_horizontal_margin"
+                        android:layout_marginTop="@dimen/settings_title_subtitle_margin"
+                        android:textSize="16sp"
+                        android:textColor="@color/darkGrey"
+                        android:text="@string/pref_local_storage_subtitle"
+                        android:background="?android:attr/selectableItemBackground"/>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+        </ScrollView>
+    </RelativeLayout>
 
 </FrameLayout>
