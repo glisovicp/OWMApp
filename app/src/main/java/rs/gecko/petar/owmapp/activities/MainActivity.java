@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rs.gecko.petar.owmapp.R;
+import rs.gecko.petar.owmapp.Utils;
 import rs.gecko.petar.owmapp.fragments.AddLocationFragment;
 import rs.gecko.petar.owmapp.fragments.HelpFragment;
 import rs.gecko.petar.owmapp.fragments.SavedLocationsFragment;
@@ -65,14 +66,19 @@ public class MainActivity extends AppCompatActivity
 
         }
 
-        // show map fab button only on list of saved locations screen
+        if (Utils.isOnline(this)) {
+            Snackbar.make(parentLayout, "There is internet connection", Snackbar.LENGTH_LONG)
+                    .show();
+        } else {
+            Snackbar.make(parentLayout, "There is no internet connection", Snackbar.LENGTH_LONG)
+                    .show();
+        }
+
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
 
                 replaceFragment(AddLocationFragment.class);
                 fab.setVisibility(View.GONE);
@@ -193,6 +199,10 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    /**
+     * Method shows and hides map Floating action button
+     * @param shown
+     */
     public void showFab(Boolean shown) {
 
         if (shown == true) {
