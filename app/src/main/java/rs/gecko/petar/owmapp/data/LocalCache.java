@@ -47,7 +47,7 @@ public class LocalCache {
     public List<MyLocation> getMyLocations() {
 
         if (myLocations == null) {
-            myLocations = cachingManager.get(new TypeReference<List<String>>() {
+            myLocations = cachingManager.get(new TypeReference<List<MyLocation>>() {
             }, KEY_MYLOCATIONS);
         }
         return myLocations;

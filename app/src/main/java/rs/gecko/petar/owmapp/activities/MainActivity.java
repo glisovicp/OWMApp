@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity
     private static final int REQUEST_PERMISSIONS = 101;
 
     FloatingActionButton fab;
-    View parentLayout;
+    public View parentLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,7 +1,9 @@
 package rs.gecko.petar.owmapp.fragments;
 
+import android.annotation.SuppressLint;
 import android.location.Location;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -13,7 +15,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
@@ -28,7 +29,14 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import rs.gecko.petar.owmapp.R;
+import rs.gecko.petar.owmapp.activities.MainActivity;
+import rs.gecko.petar.owmapp.data.LocalCache;
+import rs.gecko.petar.owmapp.models.MyLocation;
+import rs.gecko.petar.owmapp.rest.models.Coord;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
 
@@ -50,9 +58,8 @@ public class AddLocationFragment extends Fragment implements OnMapReadyCallback 
 
     double lat;
     double lng;
-    String locality;
 
-    GoogleApiClient mLocationClient;
+    List<MyLocation> bookmarkedLocations;
     private FusedLocationProviderClient mFusedLocationClient;
 
     CameraUpdate update;
@@ -135,10 +142,30 @@ public class AddLocationFragment extends Fragment implements OnMapReadyCallback 
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_add_location) {
-            return true;
+            if (getActivity() instanceof MainActivity) {
+                MainActivity main = (MainActivity) getActivity();
+                String name = nameEt.getText().toString().trim();
+                if (!name.isEmpty()) {
+                    hideSoftKeyboard(main.parentLayout);
+                    saveLocation(name);
+
+                    //close current fragment
+                    closeCurrentFragment(main);
+
+
+                } else {
+                    Snackbar.make(main.parentLayout, this.getString(R.string.empty_name), Snackbar.LENGTH_LONG)
+                            .show();
+                }
+            }
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void closeCurrentFragment(MainActivity main) {
+//        FragmentManager manager = main.getSupportFragmentManager();
+//        manager.popBackStack();
     }
 
     /**
@@ -159,13 +186,17 @@ public class AddLocationFragment extends Fragment implements OnMapReadyCallback 
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
-//        // Add a marker in Sydney and move the camera
-//        LatLng sydney = new LatLng(-34, 151);
-//        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//
-//        CameraPosition cameraPosition = CameraPosition.builder().target(sydney).zoom(DEFAULTZOOM).bearing(0).tilt(45).build();
-//        mMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
 
+            @Override
+            public void onMapLongClick(LatLng ll) {
+
+                lat = ll.latitude;
+                lng = ll.longitude;
+            }
+        });
+
+        //position on current location
         gotoCurrentLocation();
     }
 
@@ -178,6 +209,7 @@ public class AddLocationFragment extends Fragment implements OnMapReadyCallback 
         imm.hideSoftInputFromInputMethod(v.getWindowToken(), 0);
     }
 
+    @SuppressLint("MissingPermission")
     protected void gotoCurrentLocation () {
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(getActivity());
@@ -189,7 +221,9 @@ public class AddLocationFragment extends Fragment implements OnMapReadyCallback 
                     // Logic to handle location object
 
                     LatLng ll = new LatLng(location.getLatitude(), location.getLongitude());
-                    setMarkerCurrentlocation(locality, ll.latitude, ll.longitude);
+                    lat = ll.latitude;
+                    lng = ll.longitude;
+                    setMarkerCurrentlocation(ll.latitude, ll.longitude);
                     update = CameraUpdateFactory.newLatLngZoom(ll, DEFAULTZOOM);
                     mMap.animateCamera(update);
 
@@ -199,20 +233,9 @@ public class AddLocationFragment extends Fragment implements OnMapReadyCallback 
             }
         });
 
-
-//        Location current = LocationServices.FusedLocationApi.getLastLocation(mLocationClient);
-//        if (current == null) {
-//            Toast.makeText(getActivity(), "Current location not found!", Toast.LENGTH_SHORT).show();
-//        }
-//        else {
-//            LatLng ll = new LatLng(current.getLatitude(), current.getLongitude());
-//            setMarkerCurrentlocation(locality, ll.latitude, ll.longitude);
-//            update = CameraUpdateFactory.newLatLngZoom(ll, DEFAULTZOOM);
-//            mMap.animateCamera(update);
-//        }
     }
 
-    private void setMarkerCurrentlocation (String locality, double lat, double lng) {
+    private void setMarkerCurrentlocation (double lat, double lng) {
 
         /**
          * remove previously set marker on map
@@ -226,12 +249,30 @@ public class AddLocationFragment extends Fragment implements OnMapReadyCallback 
          * set marker
          */
         MarkerOptions options = new MarkerOptions()
-                .title(locality)
                 .position(new LatLng(lat, lng))
 //                .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_mapmarker));																//ako se postavlja nas marker; moze da stoji u assets folderu, ili u drawable folderima
 		.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));														//ako se postavlja default android marker
 
         marker = mMap.addMarker(options);
+    }
+
+    private void saveLocation(String name) {
+
+        MyLocation myLocation = new MyLocation();
+        myLocation.setLocationName(name);
+
+        Coord coord = new Coord();
+        coord.setLat(lat);
+        coord.setLon(lng);
+        myLocation.setLocation(coord);
+
+        bookmarkedLocations = LocalCache.getInstance(getActivity().getApplication()).getMyLocations();
+        if (bookmarkedLocations == null) {
+            bookmarkedLocations = new ArrayList<>();
+        }
+        bookmarkedLocations.add(myLocation);
+        LocalCache.getInstance(getActivity().getApplication()).setMyLocations(bookmarkedLocations);
+
     }
 
 }

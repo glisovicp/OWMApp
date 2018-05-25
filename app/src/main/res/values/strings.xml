@@ -28,5 +28,8 @@
     <!--Map sccreen-->
     <string name="location_name">Location name</string>
     <string name="no_permision_packager_message">There is no System Activity to handle the permissions request! Try to add manualy.</string>
+    <string name="empty_name">Name field shouldn\'t be empty!</string>
+    <string name="name">Name:</string>
+    <string name="long_press_on_map_to_pick_location">Long press on map to pick location</string>
 
 </resources>
