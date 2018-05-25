@@ -1,39 +1,149 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr" prefix="content: http://purl.org/rss/1.0/modules/content/ dc: http://purl.org/dc/terms/ foaf: http://xmlns.com/foaf/0.1/ og: http://ogp.me/ns# rdfs: http://www.w3.org/2000/01/rdf-schema# sioc: http://rdfs.org/sioc/ns# sioct: http://rdfs.org/sioc/types# skos: http://www.w3.org/2004/02/skos/core# xsd: http://www.w3.org/2001/XMLSchema#">
+<html>
 
 <head>
-	<meta charset="utf-8" />
-	<title>Help</title>
-	<meta name="HandheldFriendly" content="true">
-	<meta name="MobileOptimized" content="width">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weather app manual</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <style type="text/css">
+        body {
+            font-size: 100%;
+            background-color: #EEEEEE
+        }
 
+        p.p2 {
+            margin: 0.0px 10.0px 20.0px 10.0px;
+            color: #333333;
+            -webkit-text-stroke: #333333;
+            font-family: 'Helvetica Neue';
+            text-align: justify
+        }
+
+        li.li3 {
+            margin: 0.0px 0.0px 10.0px 0.0px;
+            color: #333333;
+            -webkit-text-stroke: #333333;
+            font-family: 'Helvetica Neue'
+        }
+
+        li.li4 {
+            margin: 0.0px 0.0px 10.0px 0.0px;
+            color: #333333;
+            -webkit-text-stroke: #333333;
+            font-family: 'Helvetica Neue'
+        }
+
+        h3 {
+            font-family: 'Helvetica Neue';
+            color: #333333;
+            -webkit-text-stroke: #333333;
+            margin: 0.0px 10.0px 20.0px 10.0px
+        }
+
+        h2 {
+            font-family: 'Helvetica Neue';
+            color: #0187d4;
+            -webkit-text-stroke: #333333;
+            margin: 0.0px 10.0px 20.0px 10.0px
+        }
+
+        h1 {
+            font-family: 'Helvetica Neue';
+            color: #333333;
+            -webkit-text-stroke: #333333;
+            margin: 0.0px 0.0px 20.0px 0.0px;
+            text-align: center
+        }
+
+        img {
+            margin: 0.0px 30.0px 30.0px 30.0px;
+        }
+
+        span.s1 {
+            font-kerning: none
+        }
+
+        span.s2 {
+            -webkit-text-stroke: 0px #000000;
+            font-family: 'Helvetica Neue'
+        }
+
+        span.s3 {
+            -webkit-text-stroke: 0px #000000
+        }
+
+        span.s4 {
+            font-kerning: none
+        }
+
+        ol.ol1 {
+            list-style-type: lower-alpha
+        }
+
+        ol.ol2 {
+            list-style-type: lower-roman
+        }
+
+        ul {
+            margin-left: 10px;
+            color: #333333;
+            -webkit-text-stroke: #333333;
+            font-family: 'Helvetica Neue';
+        }
+
+        a {
+            color: #0427ec;
+        }
+    </style>
 </head>
 
 <body>
+    <div>
+        <span class="s1"></span>
+        <br/>
 
-	<div id="terms">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-10 col-md-offset-1 terms-of-use">
-					<div class="field field-name-body field-type-text-with-summary field-label-hidden">
-						<div class="field-items">
-							<div class="field-item even" property="content:encoded">
-								<p>
-									<b>
-										<u>INTRODUCTION:</u>
-									</b>
-								</p>
+        <h2>How to add a location </h2>
 
-							</div>
-						</div>
-					</div>
+        <p class="p2">
+            On the home screen you should press a map floating button to add your weather location:
+        </p>
 
-				</div>
-			</div>
-		</div>
-	</div>
+        <img src="empty_locations.png" style="width: 150px; margin-bottom: 10px;" />
 
+        <p class="p2">
+            On Add Location scren you should pick a location on map by long press on point on map. After long press. You should set a
+            name for your place by filling name text field:
+        </p>
+        <img src="add_location.png" style="width: 150px; margin-bottom: 10px;" />
+
+        <h2>How to delete your location </h2>
+
+        <p class="p2">
+            You can delete added location by swipping from left to right a location you want to delete:
+        </p>
+
+        <img src="remove_location.png" style="width: 150px; margin-bottom: 10px;" />
+
+        <h2>Weather details</h2>
+
+        <p class="p2">
+            You can select previously bookmarked location by pressing one from the list. You can see the current weather details: weather
+            image, current temperature, humidity, wind speed, wind degree and rain volume for the last 3 hours (if available).
+            You can see 5 days forecast with weather image, maximum daily temperature for next 5 days:
+        </p>
+
+        <img src="city.png" style="width: 150px; margin-bottom: 10px;" />
+
+        <h2>Settings</h2>
+
+        <p class="p2">
+            There is an option to remove all places you've added in settings. You can configure units here, too. Metic will show temperature
+            in °C and speed in m/s; imperial will show temperature in °F and speed in mph.
+        </p>
+
+        <img src="settings.png" style="width: 150px; margin-bottom: 10px;" />
+
+    </div>
 </body>
 
 </html>
