@@ -57,9 +57,9 @@ public class HelpFragment extends Fragment {
         webView.setBackgroundColor(0x00000000);
         webView.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
 
+        getActivity().setTitle(getString(R.string.title_help));
+
         return v;
-
-
 
     }
 

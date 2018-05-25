@@ -72,6 +72,8 @@ public class SavedLocationsFragment extends Fragment implements RecyclerItemTouc
         View v = inflater.inflate(R.layout.fragment_savedlocations, container, false);
         locationsRecyclerView = (RecyclerView) v.findViewById(R.id.saved_locations_rv);
 
+        getActivity().setTitle(getString(R.string.app_name));
+
         // adding item touch helper
         // only ItemTouchHelper.LEFT added to detect Right to Left swipe
         // if you want both Right -> Left and Left -> Right

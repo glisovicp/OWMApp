@@ -110,6 +110,8 @@ public class AddLocationFragment extends Fragment implements OnMapReadyCallback 
 
         nameEt = (EditText) mView.findViewById(R.id.nameET);
 
+        getActivity().setTitle(getString(R.string.title_save_location));
+
         setHasOptionsMenu(true);
 
         return mView;

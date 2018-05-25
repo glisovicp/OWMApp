@@ -80,6 +80,8 @@ public class WeatherDetailsFragment extends Fragment {
 
         if (getArguments() != null) {
             chosenLocation = (MyLocation) getArguments().getSerializable(ARG_MY_LOCATION);
+
+            getActivity().setTitle(chosenLocation.getLocationName());
         }
     }
 
