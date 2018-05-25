@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/name_rl"
             android:layout_above="@id/manual_rl"
-            android:clickable="true"
+            android:longClickable="true"
             tools:context="rs.gecko.petar.owmapp.fragments.AddLocationFragment"/>
 
         <RelativeLayout

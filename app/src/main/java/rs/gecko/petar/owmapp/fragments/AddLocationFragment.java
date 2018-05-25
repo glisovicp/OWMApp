@@ -150,7 +150,8 @@ public class AddLocationFragment extends Fragment implements OnMapReadyCallback 
                     saveLocation(name);
 
                     //close current fragment
-                    closeCurrentFragment(main);
+                    main.replaceFragment(SavedLocationsFragment.class);
+                    main.showFab(true);
 
 
                 } else {
@@ -161,11 +162,6 @@ public class AddLocationFragment extends Fragment implements OnMapReadyCallback 
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    private void closeCurrentFragment(MainActivity main) {
-//        FragmentManager manager = main.getSupportFragmentManager();
-//        manager.popBackStack();
     }
 
     /**
@@ -193,6 +189,8 @@ public class AddLocationFragment extends Fragment implements OnMapReadyCallback 
 
                 lat = ll.latitude;
                 lng = ll.longitude;
+
+                setMarkerCurrentlocation(lat, lng);
             }
         });
 

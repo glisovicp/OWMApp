@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private void replaceFragment(Class fragmentClass) {
+    public void replaceFragment(Class fragmentClass) {
         Fragment fragment = null;
         try {
             fragment = (Fragment) fragmentClass.newInstance();
@@ -126,15 +126,15 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_mylocations) {
             //open list with my locations
             fragmentClass = SavedLocationsFragment.class;
-            fab.setVisibility(View.VISIBLE);
+            showFab(true);
         } else if (id == R.id.nav_settings) {
             //open settings screen
             fragmentClass = SettingsFragment.class;
-            fab.setVisibility(View.GONE);
+            showFab(false);
         } else if (id == R.id.nav_help) {
             //open help screen
             fragmentClass = HelpFragment.class;
-            fab.setVisibility(View.GONE);
+            showFab(false);
         }
 
         replaceFragment(fragmentClass);
@@ -190,6 +190,15 @@ public class MainActivity extends AppCompatActivity
 
             default:
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
+    public void showFab(Boolean shown) {
+
+        if (shown == true) {
+            fab.setVisibility(View.VISIBLE);
+        } else {
+            fab.setVisibility(View.GONE);
         }
     }
 }
