@@ -101,6 +101,16 @@ public class WeatherDetailsFragment extends Fragment {
         humidityV = (TextView) v.findViewById(R.id.tvHumidity);
         geoCoordinatesV = (TextView) v.findViewById(R.id.tvGeoCoordinates);
 
+        temperatureV.setVisibility(View.INVISIBLE);
+        temperatureMinV.setVisibility(View.INVISIBLE);
+        temperatureMaxV.setVisibility(View.INVISIBLE);
+        windV.setVisibility(View.INVISIBLE);
+        pressureV.setVisibility(View.INVISIBLE);
+        humidityV.setVisibility(View.INVISIBLE);
+        geoCoordinatesV.setVisibility(View.INVISIBLE);
+        cloudinessV.setVisibility(View.INVISIBLE);
+        weatherIconImg.setVisibility(View.INVISIBLE);
+
         return v;
     }
 
@@ -136,6 +146,16 @@ public class WeatherDetailsFragment extends Fragment {
     private void updateGui() {
 
         if (weatherPerCityResponse != null) {
+
+            temperatureV.setVisibility(View.VISIBLE);
+            temperatureMinV.setVisibility(View.VISIBLE);
+            temperatureMaxV.setVisibility(View.VISIBLE);
+            windV.setVisibility(View.VISIBLE);
+            pressureV.setVisibility(View.VISIBLE);
+            humidityV.setVisibility(View.VISIBLE);
+            geoCoordinatesV.setVisibility(View.VISIBLE);
+            cloudinessV.setVisibility(View.VISIBLE);
+            weatherIconImg.setVisibility(View.VISIBLE);
 
             // Temperature
             temperatureV.setText(getString(R.string.format_temperature,
