@@ -5,11 +5,6 @@
     android:layout_height="match_parent"
     tools:context="rs.gecko.petar.owmapp.fragments.HelpFragment">
 
-    <!--<TextView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:text="Help"-->
-        <!--android:textColor="@color/blue"/>-->
     <WebView
         android:id="@+id/file_viewer_wv"
         android:layout_width="match_parent"

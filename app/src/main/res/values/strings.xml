@@ -32,4 +32,18 @@
     <string name="name">Name:</string>
     <string name="long_press_on_map_to_pick_location">Long press on map to pick location</string>
 
+
+    <!-- Weather details screen -->
+    <string name="format_location">%1$s, %2$s</string>
+    <string name="format_actual_weather">%1$s · %2$s</string>
+    <string name="format_temperature">%s °C</string>
+    <string name="format_temperature_min">Temperature Min.: %s °C</string>
+    <string name="format_temperature_max">Temperature Max.: %s °C</string>
+
+    <string name="format_wind">Wind: %1$s m\/s, %2$s °C</string>
+    <string name="format_cloudiness">Cloudiness: %s</string>
+    <string name="format_pressure">Pressure: %s hPa</string>
+    <string name="format_humidity">Humidity: %s \%%</string>
+    <string name="format_geo_coords">Geo Coordinates: [%1$.2f, %2$.2f]</string>
+
 </resources>

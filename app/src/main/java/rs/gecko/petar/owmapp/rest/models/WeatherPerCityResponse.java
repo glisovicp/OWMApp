@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Petar on 5/24/18.
@@ -14,7 +15,7 @@ import java.io.Serializable;
 public class WeatherPerCityResponse extends BaseModel implements Serializable {
 
     public Coord coord;
-    public Weather weather[];
+    public List<Weather> weather;
     public String base;
     public Main main;
     public Wind wind;

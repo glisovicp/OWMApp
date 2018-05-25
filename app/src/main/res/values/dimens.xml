@@ -17,4 +17,10 @@
     <dimen name="settings_vertical_margin">30dp</dimen>
     <dimen name="settings_title_subtitle_margin">10dp</dimen>
 
+    <!-- Weather detail screen-->
+    <dimen name="card_margin">16dp</dimen>
+    <dimen name="card_item_vertical_margin">8dp</dimen>
+    <dimen name="card_item_horizontal_margin">8dp</dimen>
+    <dimen name="detail_weather_icon_size">40dp</dimen>
+
 </resources>
